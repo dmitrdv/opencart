@@ -1,18 +1,16 @@
 <?php if ($error) { ?>
-<div class="alert alert-error"><?php echo $error; ?></div>
+<div class="warning"><?php echo $error; ?></div>
 <?php } ?>
 <?php if ($success) { ?>
-<div class="alert alert-success"><i class="icon-ok-sign"></i> <?php echo $success; ?>
-  <button type="button" class="close" data-dismiss="alert">&times;</button>
-</div>
+<div class="success"><?php echo $success; ?></div>
 <?php } ?>
-<table class="table table-striped table-bordered">
+<table class="list">
   <thead>
     <tr>
-      <td class="left"><?php echo $column_date_added; ?></td>
-      <td class="left"><?php echo $column_comment; ?></td>
-      <td class="left"><?php echo $column_status; ?></td>
-      <td class="left"><?php echo $column_notify; ?></td>
+      <td class="left"><b><?php echo $column_date_added; ?></b></td>
+      <td class="left"><b><?php echo $column_comment; ?></b></td>
+      <td class="left"><b><?php echo $column_status; ?></b></td>
+      <td class="left"><b><?php echo $column_notify; ?></b></td>
     </tr>
   </thead>
   <tbody>
@@ -32,11 +30,4 @@
     <?php } ?>
   </tbody>
 </table>
-<div class="row-fluid">
-  <div class="span6">
-    <div class="pagination"><?php echo $pagination; ?></div>
-  </div>
-  <div class="span6">
-    <div class="results"><?php echo $results; ?></div>
-  </div>
-</div>
+<div class="pagination"><?php echo $pagination; ?></div>

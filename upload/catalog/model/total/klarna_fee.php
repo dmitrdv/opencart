@@ -14,7 +14,7 @@ class ModelTotalKlarnaFee extends Model {
 		} elseif (isset($this->session->data['guest']['payment'])) {
 			$address = $this->session->data['guest']['payment'];
 		}
-        
+		
 		if (!isset($address)) {
 			$status = false;
 		} elseif (!isset($this->session->data['payment_method']['code']) || $this->session->data['payment_method']['code'] != 'klarna_invoice') {

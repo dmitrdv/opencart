@@ -24,23 +24,27 @@ class ControllerCheckoutSuccess extends Controller {
 		$this->data['breadcrumbs'] = array(); 
 
       	$this->data['breadcrumbs'][] = array(
-        	'text' => $this->language->get('text_home'),
-			'href' => $this->url->link('common/home')
+        	'href'      => $this->url->link('common/home'),
+        	'text'      => $this->language->get('text_home'),
+        	'separator' => false
       	); 
 		
       	$this->data['breadcrumbs'][] = array(
-        	'text' => $this->language->get('text_basket'),
-			'href' => $this->url->link('checkout/cart')
+        	'href'      => $this->url->link('checkout/cart'),
+        	'text'      => $this->language->get('text_basket'),
+        	'separator' => $this->language->get('text_separator')
       	);
 				
 		$this->data['breadcrumbs'][] = array(
-			'text' => $this->language->get('text_checkout'),
-			'href' => $this->url->link('checkout/checkout', '', 'SSL')
+			'href'      => $this->url->link('checkout/checkout', '', 'SSL'),
+			'text'      => $this->language->get('text_checkout'),
+			'separator' => $this->language->get('text_separator')
 		);	
 					
       	$this->data['breadcrumbs'][] = array(
-        	'text' => $this->language->get('text_success'),
-			'href' => $this->url->link('checkout/success')
+        	'href'      => $this->url->link('checkout/success'),
+        	'text'      => $this->language->get('text_success'),
+        	'separator' => $this->language->get('text_separator')
       	);
 
 		$this->data['heading_title'] = $this->language->get('heading_title');

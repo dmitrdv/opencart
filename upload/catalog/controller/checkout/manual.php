@@ -78,7 +78,7 @@ class ControllerCheckoutManual extends Controller {
 			
 			if (isset($this->request->post['product_id'])) {
 				$product_info = $this->model_catalog_product->getProduct($this->request->post['product_id']);
-
+				
 				if ($product_info) {
 					if (isset($this->request->post['quantity'])) {
 						$quantity = $this->request->post['quantity'];
@@ -103,8 +103,6 @@ class ControllerCheckoutManual extends Controller {
 					if (!isset($json['error']['product']['option'])) {
 						$this->cart->add($this->request->post['product_id'], $quantity, $option);
 					}
-				} else {
-					$json['error']['product']['store'] = $this->language->get('error_store');
 				}
 			}
 			
@@ -148,7 +146,7 @@ class ControllerCheckoutManual extends Controller {
 						'product_option_id'       => $option['product_option_id'],
 						'product_option_value_id' => $option['product_option_value_id'],
 						'name'                    => $option['name'],
-						'value'                   => $option['value'],
+						'value'                   => $option['option_value'],
 						'type'                    => $option['type']
 					);
 				}
@@ -460,16 +458,16 @@ class ControllerCheckoutManual extends Controller {
 					$this->load->model('total/' . $result['code']);
 		
 					$this->{'model_total_' . $result['code']}->getTotal($json['order_total'], $total, $taxes);
-				}	
+				}
+				
+				$sort_order = array(); 
+			  
+				foreach ($json['order_total'] as $key => $value) {
+					$sort_order[$key] = $value['sort_order'];
+				}
+	
+				array_multisort($sort_order, SORT_ASC, $json['order_total']);				
 			}
-			
-			$sort_order = array(); 
-		  
-			foreach ($json['order_total'] as $key => $value) {
-				$sort_order[$key] = $value['sort_order'];
-			}
-
-			array_multisort($sort_order, SORT_ASC, $json['order_total']);				
 		
 			// Payment
 			if ($this->request->post['payment_country_id'] == '') {

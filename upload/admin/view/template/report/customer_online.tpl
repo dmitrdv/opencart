@@ -1,16 +1,16 @@
 <?php echo $header; ?>
 <div id="content">
-  <ul class="breadcrumb">
+  <div class="breadcrumb">
     <?php foreach ($breadcrumbs as $breadcrumb) { ?>
-    <li><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a></li>
+    <?php echo $breadcrumb['separator']; ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a>
     <?php } ?>
-  </ul>
+  </div>
   <div class="box">
-    <div class="box-heading">
-      <h1><i class="icon-bar-chart icon-large"></i> <?php echo $heading_title; ?></h1>
+    <div class="heading">
+      <h1><img src="view/image/report.png" alt="" /> <?php echo $heading_title; ?></h1>
     </div>
-    <div class="box-content">
-      <table class="table table-striped table-bordered table-hover">
+    <div class="content">
+      <table class="list">
         <thead>
           <tr>
             <td class="left"><?php echo $column_ip; ?></td>
@@ -28,7 +28,7 @@
             <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
-            <td align="right"><button type="button" id="button-filter" class="btn"><i class="icon-search"></i> <?php echo $button_filter; ?></button></td>
+            <td align="right"><a onclick="filter();" class="button"><?php echo $button_filter; ?></a></td>
           </tr>
           <?php if ($customers) { ?>
           <?php foreach ($customers as $customer) { ?>
@@ -42,7 +42,7 @@
             <td class="left"><?php echo $customer['date_added']; ?></td>
             <td class="right"><?php foreach ($customer['action'] as $action) { ?>
               [ <a href="<?php echo $action['href']; ?>"><?php echo $action['text']; ?></a> ]
-              <?php } ?></td>
+              <?php } ?></td>            
           </tr>
           <?php } ?>
           <?php } else { ?>
@@ -52,34 +52,27 @@
           <?php } ?>
         </tbody>
       </table>
-      <div class="row-fluid">
-        <div class="span6">
-          <div class="pagination"><?php echo $pagination; ?></div>
-        </div>
-        <div class="span6">
-          <div class="results"><?php echo $results; ?></div>
-        </div>
-      </div>
+      <div class="pagination"><?php echo $pagination; ?></div>
     </div>
   </div>
 </div>
 <script type="text/javascript"><!--
-$('#button-filter').on('click', function() {
+function filter() {
 	url = 'index.php?route=report/customer_online&token=<?php echo $token; ?>';
 	
-	var filter_customer = $('input[name=\'filter_customer\']').val();
+	var filter_customer = $('input[name=\'filter_customer\']').attr('value');
 	
 	if (filter_customer) {
 		url += '&filter_customer=' + encodeURIComponent(filter_customer);
 	}
 		
-	var filter_ip = $('input[name=\'filter_ip\']').val();
+	var filter_ip = $('input[name=\'filter_ip\']').attr('value');
 	
 	if (filter_ip) {
 		url += '&filter_ip=' + encodeURIComponent(filter_ip);
 	}
 				
 	location = url;
-});
+}
 //--></script> 
 <?php echo $footer; ?>

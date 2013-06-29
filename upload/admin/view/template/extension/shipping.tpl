@@ -1,22 +1,22 @@
 <?php echo $header; ?>
 <div id="content">
-  <ul class="breadcrumb">
+  <div class="breadcrumb">
     <?php foreach ($breadcrumbs as $breadcrumb) { ?>
-    <li><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a></li>
+    <?php echo $breadcrumb['separator']; ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a>
     <?php } ?>
-  </ul>
-  <?php if ($error_warning) { ?>
-  <div class="alert alert-error"><i class="icon-exclamation-sign"></i> <?php echo $error_warning; ?> <button type="button" class="close" data-dismiss="alert">&times;</button></div>
-  <?php } ?>
+  </div>
   <?php if ($success) { ?>
-  <div class="alert alert-success"><i class="icon-ok-sign"></i> <?php echo $success; ?> <button type="button" class="close" data-dismiss="alert">&times;</button></div>
+  <div class="success"><?php echo $success; ?></div>
+  <?php } ?>
+  <?php if ($error) { ?>
+  <div class="warning"><?php echo $error; ?></div>
   <?php } ?>
   <div class="box">
-    <div class="box-heading">
-      <h1><i class="icon-puzzle-piece icon-large"></i> <?php echo $heading_title; ?></h1>
+    <div class="heading">
+      <h1><img src="view/image/shipping.png" alt="" /> <?php echo $heading_title; ?></h1>
     </div>
-    <div class="box-content">
-      <table class="table table-striped table-bordered table-hover">
+    <div class="content">
+      <table class="list">
         <thead>
           <tr>
             <td class="left"><?php echo $column_name; ?></td>

@@ -146,13 +146,15 @@ class ControllerCatalogOption extends Controller {
   		$this->data['breadcrumbs'] = array();
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('text_home'),
-			'href' => $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], 'SSL')
+       		'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+      		'separator' => false
    		);
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('heading_title'),
-			'href' => $this->url->link('catalog/option', 'token=' . $this->session->data['token'] . $url, 'SSL')
+       		'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('catalog/option', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+      		'separator' => ' :: '
    		);
 		
 		$this->data['insert'] = $this->url->link('catalog/option/insert', 'token=' . $this->session->data['token'] . $url, 'SSL');
@@ -242,11 +244,10 @@ class ControllerCatalogOption extends Controller {
 		$pagination->total = $option_total;
 		$pagination->page = $page;
 		$pagination->limit = $this->config->get('config_admin_limit');
+		$pagination->text = $this->language->get('text_pagination');
 		$pagination->url = $this->url->link('catalog/option', 'token=' . $this->session->data['token'] . $url . '&page={page}', 'SSL');
 
 		$this->data['pagination'] = $pagination->render();
-		
-		$this->data['results'] = sprintf($this->language->get('text_pagination'), ($option_total) ? (($page - 1) * $this->config->get('config_admin_limit')) + 1 : 0, ((($page - 1) * $this->config->get('config_admin_limit')) > ($option_total - $this->config->get('config_admin_limit'))) ? $option_total : ((($page - 1) * $this->config->get('config_admin_limit')) + $this->config->get('config_admin_limit')), $option_total, ceil($option_total / $this->config->get('config_admin_limit')));
 		
 		$this->data['sort'] = $sort;
 		$this->data['order'] = $order;
@@ -276,6 +277,8 @@ class ControllerCatalogOption extends Controller {
 		$this->data['text_datetime'] = $this->language->get('text_datetime');
 		$this->data['text_time'] = $this->language->get('text_time');
 		$this->data['text_image_manager'] = $this->language->get('text_image_manager');
+		$this->data['text_browse'] = $this->language->get('text_browse');
+		$this->data['text_clear'] = $this->language->get('text_clear');	
 		
 		$this->data['entry_name'] = $this->language->get('entry_name');
 		$this->data['entry_type'] = $this->language->get('entry_type');
@@ -287,9 +290,7 @@ class ControllerCatalogOption extends Controller {
 		$this->data['button_cancel'] = $this->language->get('button_cancel');
 		$this->data['button_add_option_value'] = $this->language->get('button_add_option_value');
 		$this->data['button_remove'] = $this->language->get('button_remove');
-		$this->data['button_edit'] = $this->language->get('button_edit');
-		$this->data['button_clear'] = $this->language->get('button_clear');
-		
+
  		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
 		} else {
@@ -325,13 +326,15 @@ class ControllerCatalogOption extends Controller {
   		$this->data['breadcrumbs'] = array();
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('text_home'),
-			'href' => $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], 'SSL')
+       		'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+      		'separator' => false
    		);
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('heading_title'),
-			'href' => $this->url->link('catalog/option', 'token=' . $this->session->data['token'] . $url, 'SSL')
+       		'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('catalog/option', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+      		'separator' => ' :: '
    		);
 		
 		if (!isset($this->request->get['option_id'])) {
@@ -389,7 +392,7 @@ class ControllerCatalogOption extends Controller {
 		$this->data['option_values'] = array();
 		 
 		foreach ($option_values as $option_value) {
-			if (is_file(DIR_IMAGE . $option_value['image'])) {
+			if ($option_value['image'] && file_exists(DIR_IMAGE . $option_value['image'])) {
 				$image = $option_value['image'];
 			} else {
 				$image = 'no_image.jpg';
@@ -482,7 +485,7 @@ class ControllerCatalogOption extends Controller {
 			$data = array(
 				'filter_name' => $this->request->get['filter_name'],
 				'start'       => 0,
-				'limit'       => 5
+				'limit'       => 20
 			);
 			
 			$options = $this->model_catalog_option->getOptions($data);
@@ -502,7 +505,7 @@ class ControllerCatalogOption extends Controller {
 													
 						$option_value_data[] = array(
 							'option_value_id' => $option_value['option_value_id'],
-							'name'            => strip_tags(html_entity_decode($option_value['name'], ENT_QUOTES, 'UTF-8')),
+							'name'            => html_entity_decode($option_value['name'], ENT_QUOTES, 'UTF-8'),
 							'image'           => $image					
 						);
 					}
@@ -533,7 +536,7 @@ class ControllerCatalogOption extends Controller {
 				if ($option['type'] == 'date' || $option['type'] == 'datetime' || $option['type'] == 'time') {
 					$type = $this->language->get('text_date');
 				}
-				
+												
 				$json[] = array(
 					'option_id'    => $option['option_id'],
 					'name'         => strip_tags(html_entity_decode($option['name'], ENT_QUOTES, 'UTF-8')),

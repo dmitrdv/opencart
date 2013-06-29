@@ -1,12 +1,12 @@
 <?php echo $header; ?><?php echo $column_left; ?><?php echo $column_right; ?>
 <div id="content"><?php echo $content_top; ?>
-  <ul class="breadcrumb">
+  <div class="breadcrumb">
     <?php foreach ($breadcrumbs as $breadcrumb) { ?>
-    <li><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a></li>
+    <?php echo $breadcrumb['separator']; ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a>
     <?php } ?>
-  </ul>
+  </div>
   <h1><?php echo $heading_title; ?></h1>
-  <table class="table table-striped table-bordered table-hover">
+  <table class="list">
     <thead>
       <tr>
         <td class="left" colspan="2"><?php echo $text_order_detail; ?></td>
@@ -28,7 +28,7 @@
       </tr>
     </tbody>
   </table>
-  <table class="table table-striped table-bordered table-hover">
+  <table class="list">
     <thead>
       <tr>
         <td class="left"><?php echo $text_payment_address; ?></td>
@@ -46,7 +46,7 @@
       </tr>
     </tbody>
   </table>
-  <table class="table table-striped table-bordered table-hover">
+  <table class="list">
     <thead>
       <tr>
         <td class="left"><?php echo $column_name; ?></td>
@@ -101,7 +101,7 @@
     </tfoot>
   </table>
   <?php if ($comment) { ?>
-  <table class="table table-striped table-bordered table-hover">
+  <table class="list">
     <thead>
       <tr>
         <td class="left"><?php echo $text_comment; ?></td>
@@ -116,7 +116,7 @@
   <?php } ?>
   <?php if ($histories) { ?>
   <h2><?php echo $text_history; ?></h2>
-  <table class="table table-striped table-bordered table-hover">
+  <table class="list">
     <thead>
       <tr>
         <td class="left"><?php echo $column_date_added; ?></td>
@@ -136,7 +136,7 @@
   </table>
   <?php } ?>
   <div class="buttons">
-    <div class="right"><a href="<?php echo $continue; ?>" class="btn"><?php echo $button_continue; ?></a></div>
+    <div class="right"><a href="<?php echo $continue; ?>" class="button"><?php echo $button_continue; ?></a></div>
   </div>
   <?php echo $content_bottom; ?></div>
 <?php echo $footer; ?> 

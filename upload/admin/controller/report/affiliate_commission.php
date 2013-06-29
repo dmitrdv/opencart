@@ -40,13 +40,15 @@ class ControllerReportAffiliateCommission extends Controller {
 		$this->data['breadcrumbs'] = array();
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('text_home'),
-			'href' => $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], 'SSL')
+       		'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+      		'separator' => false
    		);
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('heading_title'),
-			'href' => $this->url->link('report/affiliate_commission', 'token=' . $this->session->data['token'] . $url, 'SSL')
+       		'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('report/affiliate_commission', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+      		'separator' => ' :: '
    		);		
 		
 		$this->load->model('report/affiliate');
@@ -69,7 +71,7 @@ class ControllerReportAffiliateCommission extends Controller {
 		
 			$action[] = array(
 				'text' => $this->language->get('text_edit'),
-				'href' => $this->url->link('marketing/affiliate/update', 'token=' . $this->session->data['token'] . '&affiliate_id=' . $result['affiliate_id'] . $url, 'SSL')
+				'href' => $this->url->link('sale/affiliate/update', 'token=' . $this->session->data['token'] . '&affiliate_id=' . $result['affiliate_id'] . $url, 'SSL')
 			);
 						
 			$this->data['affiliates'][] = array(
@@ -116,12 +118,11 @@ class ControllerReportAffiliateCommission extends Controller {
 		$pagination->total = $affiliate_total;
 		$pagination->page = $page;
 		$pagination->limit = $this->config->get('config_admin_limit');
+		$pagination->text = $this->language->get('text_pagination');
 		$pagination->url = $this->url->link('report/affiliate_commission', 'token=' . $this->session->data['token'] . $url . '&page={page}', 'SSL');
 			
 		$this->data['pagination'] = $pagination->render();
 		
-		$this->data['results'] = sprintf($this->language->get('text_pagination'), ($affiliate_total) ? (($page - 1) * $this->config->get('config_admin_limit')) + 1 : 0, ((($page - 1) * $this->config->get('config_admin_limit')) > ($affiliate_total - $this->config->get('config_admin_limit'))) ? $affiliate_total : ((($page - 1) * $this->config->get('config_admin_limit')) + $this->config->get('config_admin_limit')), $affiliate_total, ceil($affiliate_total / $this->config->get('config_admin_limit')));
-	
 		$this->data['filter_date_start'] = $filter_date_start;
 		$this->data['filter_date_end'] = $filter_date_end;	
 				 

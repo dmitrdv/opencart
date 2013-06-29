@@ -3,7 +3,6 @@
 $_['heading_title']     = 'Payment';
 
 // Text
-$_['text_success']      = 'Success: You have modified payments!';
 $_['text_install']      = 'Install';
 $_['text_uninstall']    = 'Uninstall';
 

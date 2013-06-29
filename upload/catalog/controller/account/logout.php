@@ -6,10 +6,15 @@ class ControllerAccountLogout extends Controller {
 	  		$this->cart->clear();
 			
 			unset($this->session->data['wishlist']);
-			unset($this->session->data['shipping_address']);
+			unset($this->session->data['shipping_address_id']);
+			unset($this->session->data['shipping_country_id']);
+			unset($this->session->data['shipping_zone_id']);
+			unset($this->session->data['shipping_postcode']);
 			unset($this->session->data['shipping_method']);
 			unset($this->session->data['shipping_methods']);
-			unset($this->session->data['payment_address']);
+			unset($this->session->data['payment_address_id']);
+			unset($this->session->data['payment_country_id']);
+			unset($this->session->data['payment_zone_id']);
 			unset($this->session->data['payment_method']);
 			unset($this->session->data['payment_methods']);
 			unset($this->session->data['comment']);
@@ -29,18 +34,21 @@ class ControllerAccountLogout extends Controller {
 		$this->data['breadcrumbs'] = array();
 
       	$this->data['breadcrumbs'][] = array(
-        	'text' => $this->language->get('text_home'),
-			'href' => $this->url->link('common/home')
+        	'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home'),        	
+        	'separator' => false
       	);
       	
 		$this->data['breadcrumbs'][] = array(
-        	'text' => $this->language->get('text_account'),
-			'href' => $this->url->link('account/account', '', 'SSL')
+        	'text'      => $this->language->get('text_account'),
+			'href'      => $this->url->link('account/account', '', 'SSL'),       	
+        	'separator' => $this->language->get('text_separator')
       	);
 		
       	$this->data['breadcrumbs'][] = array(
-        	'text' => $this->language->get('text_logout'),
-			'href' => $this->url->link('account/logout', '', 'SSL')
+        	'text'      => $this->language->get('text_logout'),
+			'href'      => $this->url->link('account/logout', '', 'SSL'),
+        	'separator' => $this->language->get('text_separator')
       	);	
 		
     	$this->data['heading_title'] = $this->language->get('heading_title');

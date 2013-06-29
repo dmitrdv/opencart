@@ -1,14 +1,14 @@
 <?php echo $header; ?>
 <?php if ($error_warning) { ?>
-<div class="alert alert-error"><i class="icon-exclamation-sign"></i> <?php echo $error_warning; ?> <button type="button" class="close" data-dismiss="alert">&times;</button></div>
+<div class="warning"><?php echo $error_warning; ?></div>
 <?php } ?>
 <?php echo $column_left; ?><?php echo $column_right; ?>
 <div id="content"><?php echo $content_top; ?>
-  <ul class="breadcrumb">
+  <div class="breadcrumb">
     <?php foreach ($breadcrumbs as $breadcrumb) { ?>
-    <li><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a></li>
+    <?php echo $breadcrumb['separator']; ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a>
     <?php } ?>
-  </ul>
+  </div>
   <h1><?php echo $heading_title; ?></h1>
   <p><?php echo $text_account_already; ?></p>
   <p><?php echo $text_signup; ?></p>
@@ -205,28 +205,28 @@
         <?php } else { ?>
         <input type="checkbox" name="agree" value="1" />
         <?php } ?>
-        <input type="submit" value="<?php echo $button_continue; ?>" class="btn" />
+        <input type="submit" value="<?php echo $button_continue; ?>" class="button" />
       </div>
     </div>
     <?php } else { ?>
     <div class="buttons">
       <div class="right">
-        <input type="submit" value="<?php echo $button_continue; ?>" class="btn" />
+        <input type="submit" value="<?php echo $button_continue; ?>" class="button" />
       </div>
     </div>
     <?php } ?>
   </form>
   <?php echo $content_bottom; ?></div>
 <script type="text/javascript"><!--
-$('select[name=\'country_id\']').on('change', function() {
+$('select[name=\'country_id\']').bind('change', function() {
 	$.ajax({
 		url: 'index.php?route=affiliate/register/country&country_id=' + this.value,
 		dataType: 'json',
 		beforeSend: function() {
-			$('select[name=\'country_id\']').after('<img src="catalog/view/theme/default/image/loading.gif" class="loading" style="padding-left: 5px;" />');
+			$('select[name=\'country_id\']').after('<span class="wait">&nbsp;<img src="catalog/view/theme/default/image/loading.gif" alt="" /></span>');
 		},
 		complete: function() {
-			$('.loading').remove();
+			$('.wait').remove();
 		},			
 		success: function(json) {
 			if (json['postcode_required'] == '1') {
@@ -262,7 +262,7 @@ $('select[name=\'country_id\']').on('change', function() {
 $('select[name=\'country_id\']').trigger('change');
 //--></script>
 <script type="text/javascript"><!--
-$('input[name=\'payment\']').on('change', function() {
+$('input[name=\'payment\']').bind('change', function() {
 	$('.payment').hide();
 	
 	$('#payment-' + this.value).show();

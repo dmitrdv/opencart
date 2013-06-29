@@ -212,14 +212,16 @@ class ControllerPaymentAuthorizeNetSim extends Controller {
 		$this->document->breadcrumbs = array(); 
 
       	$this->document->breadcrumbs[] = array(
-        	'href' => $this->url->http('common/home'),
-        	'text' => $this->language->get('text_home')
+        	'href'      => $this->url->http('common/home'),
+        	'text'      => $this->language->get('text_home'),
+        	'separator' => false
       	); 
 
 		
       	$this->document->breadcrumbs[] = array(
-        	'href' => $this->url->http('checkout/cart'),
-        	'text' => $this->language->get('text_basket')
+        	'href'      => $this->url->http('checkout/cart'),
+        	'text'      => $this->language->get('text_basket'),
+        	'separator' => $this->language->get('text_separator')
       	);	
       	
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/authorizenet_sim_callback.tpl')) {

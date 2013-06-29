@@ -1,10 +1,10 @@
-<table class="table table-striped table-bordered table-hover">
+<table class="list">
   <thead>
     <tr>
-      <td class="right"><?php echo $column_order_id; ?></td>
-      <td class="left"><?php echo $column_customer; ?></td>
-      <td class="right"><?php echo $column_amount; ?></td>
-      <td class="left"><?php echo $column_date_added; ?></td>
+      <td class="right"><b><?php echo $column_order_id; ?></b></td>
+      <td class="left"><b><?php echo $column_customer; ?></b></td>
+      <td class="right"><b><?php echo $column_amount; ?></b></td>
+      <td class="left"><b><?php echo $column_date_added; ?></b></td>
     </tr>
   </thead>
   <tbody>
@@ -24,11 +24,4 @@
     <?php } ?>
   </tbody>
 </table>
-<div class="row-fluid">
-  <div class="span6">
-    <div class="pagination"><?php echo $pagination; ?></div>
-  </div>
-  <div class="span6">
-    <div class="results"><?php echo $results; ?></div>
-  </div>
-</div>
+<div class="pagination"><?php echo $pagination; ?></div>

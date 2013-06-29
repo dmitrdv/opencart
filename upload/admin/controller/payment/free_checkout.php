@@ -22,6 +22,7 @@ class ControllerPaymentFreeCheckout extends Controller {
 		$this->data['text_enabled'] = $this->language->get('text_enabled');
 		$this->data['text_disabled'] = $this->language->get('text_disabled');
 		$this->data['text_all_zones'] = $this->language->get('text_all_zones');
+		$this->data['text_none'] = $this->language->get('text_none');
 		
 		$this->data['entry_order_status'] = $this->language->get('entry_order_status');		
 		$this->data['entry_status'] = $this->language->get('entry_status');
@@ -39,18 +40,21 @@ class ControllerPaymentFreeCheckout extends Controller {
   		$this->data['breadcrumbs'] = array();
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('text_home'),
-			'href' => $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], 'SSL')
+       		'text'      => $this->language->get('text_home'),
+			'href'      =>  $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+      		'separator' => false
    		);
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('text_payment'),
-			'href' => $this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL')
+       		'text'      => $this->language->get('text_payment'),
+			'href'      => $this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL'),       		
+      		'separator' => ' :: '
    		);
 		
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('heading_title'),
-			'href' => $this->url->link('payment/free_checkout', 'token=' . $this->session->data['token'], 'SSL')
+       		'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('payment/free_checkout', 'token=' . $this->session->data['token'], 'SSL'),
+      		'separator' => ' :: '
    		);
 		
 		$this->data['action'] = $this->url->link('payment/free_checkout', 'token=' . $this->session->data['token'], 'SSL');

@@ -146,13 +146,15 @@ class ControllerCatalogFilter extends Controller {
   		$this->data['breadcrumbs'] = array();
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('text_home'),
-			'href' => $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], 'SSL')
+       		'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+      		'separator' => false
    		);
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('heading_title'),
-			'href' => $this->url->link('catalog/filter', 'token=' . $this->session->data['token'] . $url, 'SSL')
+       		'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('catalog/filter', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+      		'separator' => ' :: '
    		);
 		
 		$this->data['insert'] = $this->url->link('catalog/filter/insert', 'token=' . $this->session->data['token'] . $url, 'SSL');
@@ -242,11 +244,10 @@ class ControllerCatalogFilter extends Controller {
 		$pagination->total = $filter_total;
 		$pagination->page = $page;
 		$pagination->limit = $this->config->get('config_admin_limit');
+		$pagination->text = $this->language->get('text_pagination');
 		$pagination->url = $this->url->link('catalog/filter', 'token=' . $this->session->data['token'] . $url . '&page={page}', 'SSL');
 
 		$this->data['pagination'] = $pagination->render();
-		
-		$this->data['results'] = sprintf($this->language->get('text_pagination'), ($filter_total) ? (($page - 1) * $this->config->get('config_admin_limit')) + 1 : 0, ((($page - 1) * $this->config->get('config_admin_limit')) > ($filter_total - $this->config->get('config_admin_limit'))) ? $filter_total : ((($page - 1) * $this->config->get('config_admin_limit')) + $this->config->get('config_admin_limit')), $filter_total, ceil($filter_total / $this->config->get('config_admin_limit')));
 		
 		$this->data['sort'] = $sort;
 		$this->data['order'] = $order;
@@ -307,13 +308,15 @@ class ControllerCatalogFilter extends Controller {
   		$this->data['breadcrumbs'] = array();
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('text_home'),
-			'href' => $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], 'SSL')
+       		'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+      		'separator' => false
    		);
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('heading_title'),
-			'href' => $this->url->link('catalog/filter', 'token=' . $this->session->data['token'] . $url, 'SSL')
+       		'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('catalog/filter', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+      		'separator' => ' :: '
    		);
 		
 		if (!isset($this->request->get['filter_group_id'])) {
@@ -350,7 +353,7 @@ class ControllerCatalogFilter extends Controller {
 			$this->data['sort_order'] = '';
 		}
 		
-		if (isset($this->request->post['filter'])) {
+		if (isset($this->request->post['filters'])) {
 			$this->data['filters'] = $this->request->post['filter'];
 		} elseif (isset($this->request->get['filter_group_id'])) {
 			$this->data['filters'] = $this->model_catalog_filter->getFilterDescriptions($this->request->get['filter_group_id']);
@@ -416,7 +419,7 @@ class ControllerCatalogFilter extends Controller {
 			$data = array(
 				'filter_name' => $this->request->get['filter_name'],
 				'start'       => 0,
-				'limit'       => 5
+				'limit'       => 20
 			);
 			
 			$filters = $this->model_catalog_filter->getFilters($data);

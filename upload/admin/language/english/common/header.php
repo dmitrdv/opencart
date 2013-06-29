@@ -1,6 +1,6 @@
 <?php
 // Heading
-$_['heading_title']                    = 'OpenCart';
+$_['heading_title']                    = 'Administration';
 
 // Text
 $_['text_affiliate']                   = 'Affiliates';
@@ -29,17 +29,14 @@ $_['text_front']                       = 'Store Front';
 $_['text_geo_zone']                    = 'Geo Zones';
 $_['text_help']                        = 'Help';
 $_['text_information']                 = 'Information';
-$_['text_installer']                   = 'Extension Installer';
 $_['text_language']                    = 'Languages';
 $_['text_layout']                      = 'Layouts';
 $_['text_localisation']                = 'Localisation';
-$_['text_location']                    = 'Store Location';
+$_['text_logged']                      = 'You are logged in as <span>%s</span>';
 $_['text_logout']                      = 'Logout';
 $_['text_contact']                     = 'Mail';
-$_['text_marketing']                   = 'Marketing';
-$_['text_modification']                = 'Modifications';
+$_['text_manager']                     = 'Extension Manager';
 $_['text_manufacturer']                = 'Manufacturers';
-$_['text_marketing']                   = 'Marketing';
 $_['text_module']                      = 'Modules';
 $_['text_option']                      = 'Options';
 $_['text_order']                       = 'Orders';
@@ -47,7 +44,6 @@ $_['text_order_status']                = 'Order Statuses';
 $_['text_opencart']                    = 'Homepage';
 $_['text_payment']                     = 'Payments';
 $_['text_product']                     = 'Products';
-$_['text_profile']                     = 'Profile';
 $_['text_reports']                     = 'Reports';
 $_['text_report_sale_order']           = 'Orders';
 $_['text_report_sale_tax']             = 'Tax';

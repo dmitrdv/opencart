@@ -1,15 +1,15 @@
 <?php echo $header; ?>
 <div id="content">
-  <ul class="breadcrumb">
+  <div class="breadcrumb">
     <?php foreach ($breadcrumbs as $breadcrumb) { ?>
-    <li><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a></li>
+    <?php echo $breadcrumb['separator']; ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a>
     <?php } ?>
-  </ul>
+  </div>
   <div class="box">
-    <div class="box-heading">
-      <h1><i class="icon-warning-sign icon-large"></i> <?php echo $heading_title; ?></h1>
+    <div class="heading">
+      <h1><img src="view/image/error.png" alt="" /> <?php echo $heading_title; ?></h1>
     </div>
-    <div class="box-content">
+    <div class="content">
       <div style="border: 1px solid #DDDDDD; background: #F7F7F7; text-align: center; padding: 15px;"><?php echo $text_not_found; ?></div>
     </div>
   </div>

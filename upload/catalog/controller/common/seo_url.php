@@ -10,8 +10,6 @@ class ControllerCommonSeoUrl extends Controller {
 		if (isset($this->request->get['_route_'])) {
 			$parts = explode('/', $this->request->get['_route_']);
 			
-			if (strlen(end($parts)) == 0) array_pop($parts); // remove any empty arrays from trailing /
-			
 			foreach ($parts as $part) {
 				$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "url_alias WHERE keyword = '" . $this->db->escape($part) . "'");
 				
@@ -38,22 +36,18 @@ class ControllerCommonSeoUrl extends Controller {
 						$this->request->get['information_id'] = $url[1];
 					}	
 				} else {
-					$this->request->get['route'] = 'error/not_found';
-					
-					break;
+					$this->request->get['route'] = 'error/not_found';	
 				}
 			}
 			
-			if (!isset($this->request->get['route'])){
-				if (isset($this->request->get['product_id'])) {
-					$this->request->get['route'] = 'product/product';
-				} elseif (isset($this->request->get['path'])) {
-					$this->request->get['route'] = 'product/category';
-				} elseif (isset($this->request->get['manufacturer_id'])) {
-					$this->request->get['route'] = 'product/manufacturer/info';
-				} elseif (isset($this->request->get['information_id'])) {
-					$this->request->get['route'] = 'information/information';
-				}
+			if (isset($this->request->get['product_id'])) {
+				$this->request->get['route'] = 'product/product';
+			} elseif (isset($this->request->get['path'])) {
+				$this->request->get['route'] = 'product/category';
+			} elseif (isset($this->request->get['manufacturer_id'])) {
+				$this->request->get['route'] = 'product/manufacturer/info';
+			} elseif (isset($this->request->get['information_id'])) {
+				$this->request->get['route'] = 'information/information';
 			}
 			
 			if (isset($this->request->get['route'])) {

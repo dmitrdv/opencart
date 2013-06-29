@@ -14,18 +14,21 @@ class ControllerAccountTransaction extends Controller {
       	$this->data['breadcrumbs'] = array();
 
       	$this->data['breadcrumbs'][] = array(
-        	'text' => $this->language->get('text_home'),
-			'href' => $this->url->link('common/home')
+        	'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home'),
+        	'separator' => false
       	); 
 
       	$this->data['breadcrumbs'][] = array(       	
-        	'text' => $this->language->get('text_account'),
-			'href' => $this->url->link('account/account', '', 'SSL')
+        	'text'      => $this->language->get('text_account'),
+			'href'      => $this->url->link('account/account', '', 'SSL'),
+        	'separator' => $this->language->get('text_separator')
       	);
 		
       	$this->data['breadcrumbs'][] = array(       	
-        	'text' => $this->language->get('text_transaction'),
-			'href' => $this->url->link('account/transaction', '', 'SSL')
+        	'text'      => $this->language->get('text_transaction'),
+			'href'      => $this->url->link('account/transaction', '', 'SSL'),
+        	'separator' => $this->language->get('text_separator')
       	);
 		
 		$this->load->model('account/transaction');
@@ -72,11 +75,10 @@ class ControllerAccountTransaction extends Controller {
 		$pagination->total = $transaction_total;
 		$pagination->page = $page;
 		$pagination->limit = 10; 
+		$pagination->text = $this->language->get('text_pagination');
 		$pagination->url = $this->url->link('account/transaction', 'page={page}', 'SSL');
 			
 		$this->data['pagination'] = $pagination->render();
-		
-		$this->data['results'] = sprintf($this->language->get('text_pagination'), ($transaction_total) ? (($page - 1) * 10) + 1 : 0, ((($page - 1) * 10) > ($transaction_total - 10)) ? $transaction_total : ((($page - 1) * 10) + 10), $transaction_total, ceil($transaction_total / 10));
 		
 		$this->data['total'] = $this->currency->format($this->customer->getBalance());
 		

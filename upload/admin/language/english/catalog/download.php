@@ -12,16 +12,11 @@ $_['column_remaining'] = 'Total Downloads Allowed';
 $_['column_action']    = 'Action';
 
 // Entry
-$_['entry_name']       = 'Download Name';
-$_['entry_filename']   = 'Filename';
-$_['entry_mask']       = 'Mask';
-$_['entry_remaining']  = 'Total Downloads Allowed';
-$_['entry_update']     = 'Push to Previous Customers';
-
-// Help
-$_['help_filename']    = 'You can upload via the upload button or use FTP to upload to the download directory and enter the details below.';
-$_['help_mask']        = 'It is recommended that the filename and the mask are different to stop people trying to directly link to your downloads.';
-$_['help_update']      = 'Check this to update previously purchased versions as well.';
+$_['entry_name']       = 'Download Name:';
+$_['entry_filename']   = 'Filename:<br /><span class="help">You can upload via the upload button or use FTP to upload to the download directory and enter the details below.<br /><br />It is also recommended that the filename and the mask are different to stop people trying to directly link to your downloads.</span>';
+$_['entry_mask']       = 'Mask:';
+$_['entry_remaining']  = 'Total Downloads Allowed:';
+$_['entry_update']     = 'Push to Previous Customers:<br /><span class="help">Check this to update previously purchased versions as well.</span>';
 
 // Error
 $_['error_permission'] = 'Warning: You do not have permission to modify downloads!';

@@ -1,5 +1,5 @@
 <?php if ($testmode) { ?>
-<div class="alert alert-error"><?php echo $text_testmode; ?></div>
+<div class="warning"><?php echo $text_testmode; ?></div>
 <?php } ?>
 <form action="<?php echo $action; ?>" method="post">
   <input type="hidden" name="cmd" value="_cart" />
@@ -45,7 +45,7 @@
   <input type="hidden" name="custom" value="<?php echo $custom; ?>" />
   <div class="buttons">
     <div class="right">
-      <input type="submit" value="<?php echo $button_confirm; ?>" class="btn" />
+      <input type="submit" value="<?php echo $button_confirm; ?>" class="button" />
     </div>
   </div>
 </form>
