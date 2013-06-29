@@ -1,15 +1,15 @@
 <?php
 // set main color in # hex format
-$color = "#C2577A";
+$color = "#025159";
 // set main contrast color in # hex format
 $color_back = "#FFF";
 // set a number of background 1-20
-$background=14;
+$background=9;
 
 // set a logo image
-$logo = "images/logo.png";
+$logo = "images/logo_025159.png";
 // set a logo image in retina resolution
-$logo_retina = "images/logo_retina.png";
+$logo_retina = "images/logo_retina_025159.png";
 
 // recommended dimensions for logo image is 140x35px max!
 // set logo width
