@@ -32,7 +32,6 @@ class ControllerProductSpecial extends Controller {
 		}
 				    	
 		$this->document->setTitle($this->language->get('heading_title'));
-		$this->document->addScript('catalog/view/javascript/jquery/jquery.total-storage.min.js');
 
 		$this->data['breadcrumbs'] = array();
 
@@ -67,7 +66,30 @@ class ControllerProductSpecial extends Controller {
    		);
 		
     	$this->data['heading_title'] = $this->language->get('heading_title');
-   
+        if (isset($this->request->get['sort'])) $sort = $this->request->get['sort']; else $sort = 'p.date_added';
+        if (isset($this->request->get['order'])) $order = $this->request->get['order']; else $order = 'DESC';
+        if (isset($this->request->get['category_id'])) $order = $this->request->get['category_id']; else $category_id = 0;
+        
+        if (isset($this->request->get['filter_name'])) $filter_name = $this->request->get['filter_name']; else $filter_name = '';
+        if (isset($this->request->get['filter_tag'])) $filter_tag = $this->request->get['filter_tag']; else $filter_tag = '';
+        if (isset($this->request->get['filter_description'])) $filter_description = $this->request->get['filter_description']; else $filter_description = '';
+        if (isset($this->request->get['filter_sub_category'])) $filter_sub_category = $this->request->get['filter_sub_category']; else $filter_sub_category = '';
+        if (isset($this->request->get['manufacturer_id'])) $filter_manufacturer_id = $this->request->get['manufacturer_id']; else $filter_manufacturer_id = '';
+
+        $this->data['special_block'] = $module = $this->getChild('module/latest', array(
+            'special' => 1,
+            'limit' => 20,
+            'image_width' => 185,
+            'category' => $category_id,
+            'start' => 0,
+            'sort' => $sort,
+            'order' => $order,
+            'filter_name' => $filter_name,
+            'filter_tag' => $filter_tag,
+            'filter_description' => $filter_description,
+            'filter_sub_category' => $filter_sub_category,
+            'filter_manufacturer_id' => $filter_manufacturer_id
+        ));
 		$this->data['text_empty'] = $this->language->get('text_empty');
 		$this->data['text_quantity'] = $this->language->get('text_quantity');
 		$this->data['text_manufacturer'] = $this->language->get('text_manufacturer');
@@ -142,7 +164,7 @@ class ControllerProductSpecial extends Controller {
 				'tax'         => $tax,
 				'rating'      => $result['rating'],
 				'reviews'     => sprintf($this->language->get('text_reviews'), (int)$result['reviews']),
-				'href'        => $this->url->link('product/product', 'product_id=' . $result['product_id'] . $url)
+				'href'        => $this->url->link('product/product', $url . '&product_id=' . $result['product_id'])
 			);
 		}
 
@@ -219,21 +241,39 @@ class ControllerProductSpecial extends Controller {
 		if (isset($this->request->get['order'])) {
 			$url .= '&order=' . $this->request->get['order'];
 		}
-									
+						
 		$this->data['limits'] = array();
-
-		$limits = array_unique(array($this->config->get('config_catalog_limit'), 25, 50, 75, 100));
 		
-		sort($limits);
+		$this->data['limits'][] = array(
+			'text'  => $this->config->get('config_catalog_limit'),
+			'value' => $this->config->get('config_catalog_limit'),
+			'href'  => $this->url->link('product/special', $url . '&limit=' . $this->config->get('config_catalog_limit'))
+		);
+					
+		$this->data['limits'][] = array(
+			'text'  => 25,
+			'value' => 25,
+			'href'  => $this->url->link('product/special', $url . '&limit=25')
+		);
+		
+		$this->data['limits'][] = array(
+			'text'  => 50,
+			'value' => 50,
+			'href'  => $this->url->link('product/special', $url . '&limit=50')
+		);
 
-		foreach($limits as $limit){
-			$this->data['limits'][] = array(
-				'text'  => $limit,
-				'value' => $limit,
-				'href'  => $this->url->link('product/special', $url . '&limit=' . $limit)
-			);
-		}
-			
+		$this->data['limits'][] = array(
+			'text'  => 75,
+			'value' => 75,
+			'href'  => $this->url->link('product/special', $url . '&limit=75')
+		);
+		
+		$this->data['limits'][] = array(
+			'text'  => 100,
+			'value' => 100,
+			'href'  => $this->url->link('product/special', $url . '&limit=100')
+		);
+
 		$url = '';
 
 		if (isset($this->request->get['sort'])) {

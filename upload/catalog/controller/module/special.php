@@ -7,12 +7,18 @@ class ControllerModuleSpecial extends Controller {
 
 		$this->data['button_cart'] = $this->language->get('button_cart');
 		
+        
+        
+        
 		$this->load->model('catalog/product');
 		
 		$this->load->model('tool/image');
 
 		$this->data['products'] = array();
 		
+
+        
+        
 		$data = array(
 			'sort'  => 'pd.name',
 			'order' => 'ASC',
@@ -46,7 +52,7 @@ class ControllerModuleSpecial extends Controller {
 			} else {
 				$rating = false;
 			}
-			
+		    	
 			$this->data['products'][] = array(
 				'product_id' => $result['product_id'],
 				'thumb'   	 => $image,
@@ -55,7 +61,7 @@ class ControllerModuleSpecial extends Controller {
 				'special' 	 => $special,
 				'rating'     => $rating,
 				'reviews'    => sprintf($this->language->get('text_reviews'), (int)$result['reviews']),
-				'href'    	 => $this->url->link('product/product', 'product_id=' . $result['product_id'])
+				'href'    	 => $this->url->link('product/product', 'product_id=' . $result['product_id']),
 			);
 		}
 
