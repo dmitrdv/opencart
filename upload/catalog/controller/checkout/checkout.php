@@ -1,6 +1,11 @@
 <?php  
 class ControllerCheckoutCheckout extends Controller { 
 	public function index() {
+        $quickcheckout_status = $this->config->get('quickcheckout_status');
+        if ($quickcheckout_status == 1) {
+            $this->redirect($this->url->link('quickcheckout/checkout', '', 'SSL'));
+        }
+
 		// Validate cart has products and has stock.
 		if ((!$this->cart->hasProducts() && empty($this->session->data['vouchers'])) || (!$this->cart->hasStock() && !$this->config->get('config_stock_checkout'))) {
 	  		$this->redirect($this->url->link('checkout/cart'));
