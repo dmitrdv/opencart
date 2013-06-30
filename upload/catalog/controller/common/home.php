@@ -17,7 +17,8 @@ class ControllerCommonHome extends Controller {
             'sort' => 'p.date_added',
             'order' => 'DESC'
         ));
-        
+
+        $this->data['sidebar'] = $module = $this->getChild('module/sidebar');
 
 		$this->data['heading_title'] = $this->config->get('config_title');
 		

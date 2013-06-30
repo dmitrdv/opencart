@@ -335,12 +335,14 @@ body {
     .icnloading {
         font-size:120px;
         }
-    /* home pinboard */
+
+/* home pinboard */
     #pinboard {
-        margin:20px -5px 10px 10px;
-        width:100%;}
-    
-    .item {
+        /*margin:20px -5px 10px 10px;
+        width:100%;*/
+        margin:20px -5px 10px 234px;
+    }
+    #pinboard .item {
         width: 185px;
         float: left;
         border: 1px solid #DDD;
@@ -350,19 +352,20 @@ body {
         -webkit-box-shadow: 0px 0px 9px -2px rgba(0, 0, 0, 0.2);
         box-shadow: 0px 0px 9px -2px rgba(0, 0, 0, 0.2);
     }
-    .item .name {
+    #pinboard .item .name {
         font-size: 17px;
         padding-bottom:10px;
-        } 
-    .item .pindesc {
+    }
+    #pinboard .item .pindesc {
         font-size: 11px;
         line-height: 1.4em;
-        padding: 10px 0px;}
-    .item .price {
+        padding: 10px 0px;
+    }
+    #pinboard .item .price {
         font-size: 18px;
         padding-bottom: 8px;
-        }
-    .item .cart {
+    }
+    #pinboard .item .cart {
         width: 100%;
         margin: 0 -15px -15px;
         padding: 7px 15px 5px;
@@ -371,37 +374,38 @@ body {
         background-color:#EEE;
         color: #444;
     }
-    .item .social, .item .social a {
+    #pinboard .item .social, .item .social a {
         color:#444;
         padding-top: 4px;
         font-size: 10px;
     }
-    .item .price-old {
+    #pinboard .item .price-old {
         display: block;
         font-size: 13px;
         text-align: left;
         text-decoration: line-through;
         margin-top: -5px;
-        }
-    .starnum {
+    }
+    #pinboard .starnum {
         font-size: 12px;
         top: -1px;
         right: 2px;
-        position: relative;}
-    .special {
+        position: relative;
+    }
+    #pinboard .special {
         display: block;
         position: absolute;
         top: 0;
         right: 0;
         width: 35px;
         height: 0px;
-    
     }
-    .special-icon {
+    #pinboard .special-icon {
         position: absolute;
         right: 4px;
         top: 0px;
-        font-size: 19px;}
+        font-size: 19px;
+    }
 
 /* Category design */
     .categorytitle {
@@ -622,26 +626,34 @@ body {
         z-index:4000 !important;
         top:50% !important;
         left:50% !important;}
-/* responsive pinboard */
 
+/* responsive pinboard */
 @media (max-width: 935px) {
     #pinboard {
-        width:700px;
-        margin: 20px auto 10px auto;}
+        /*width:700px;
+        margin: 20px auto 10px auto;*/
+        width:466px;
+        margin: 20px auto 10px 234px;
+    }
 }
 
 @media (max-width: 710px) {
     #pinboard {
-        width:470px;
-        margin: 20px auto 10px auto;}
+        /*width:470px;
+        margin: 20px auto 10px auto;*/
+        width:236px;
+        margin: 20px auto 10px 234px;
+    }
 }
 @media (max-width: 470px) {
     #pinboard {
-        width:220px;
-        margin: 20px auto 10px auto;}
+        /*width:220px;
+        margin: 20px auto 10px auto;*/
+        margin: 20px auto 10px 234px;
+    }
 }
 
-/* resopnsive top */
+/* responsive top */
 .responsive-menu, .responsive-search {
     display:none;
     }
@@ -870,3 +882,98 @@ margin-left: 0px;
 a:hover {
     text-decoration:none !important;
     }
+
+/* column-left */
+#sidebar {
+    float:left;
+    width:217px;
+}
+
+#sidebar .sidebar-nav {
+    width: 185px;
+    float: left;
+    padding: 15px;
+}
+
+#sidebar select {
+    width: 100%;
+}
+
+#sidebar input[type="radio"], input[type="checkbox"] {
+    margin: 3px 8px 0 0;
+}
+
+.affix {
+    top: 60px;
+    margin-top: 11px;
+}
+
+/* main carousel */
+#main-slide {
+    padding-top: 60px;
+    background: white;
+}
+
+#main-slide .bigbtn {
+    line-height: 60px;
+    padding: 11px 38px;
+    font-size: 22.5px;
+}
+
+#main-slide .caption {
+    padding-top: 110px;
+}
+
+#main-slide .item .pindesc {
+    font-size: 11px;
+    line-height: 1.4em;
+    padding: 10px 0px;
+}
+#main-slide .item .price {
+    font-size: 22.5px;
+    padding-bottom: 8px;
+    font-weight: bold;
+}
+#main-slide .item .cart {
+    width: 100%;
+    margin: 0 -15px -15px;
+    padding: 7px 15px 5px;
+    font-size: 12px;
+    text-align: center;
+    background-color:#EEE;
+    color: #444;
+}
+#main-slide .item .social, .item .social a {
+    color:#444;
+    padding-top: 4px;
+    font-size: 10px;
+}
+#main-slide .item .price-old {
+    display: block;
+    font-size: 17px;
+    text-align: left;
+    text-decoration: line-through;
+    margin-top: -5px;
+    font-weight: normal;
+}
+#main-slide .starnum {
+    font-size: 12px;
+    top: -1px;
+    right: 2px;
+    position: relative;
+}
+#main-slide .special {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 35px;
+    height: 0px;
+
+}
+#main-slide .special-icon {
+    position: absolute;
+    right: 4px;
+    top: 0px;
+    font-size: 19px;
+}
