@@ -903,6 +903,14 @@ a:hover {
     margin: 3px 8px 0 0;
 }
 
+#sidebar .radio, .checkbox {
+    padding-left: 0px;
+}
+
+#sidebar .radio2, .checkbox2 {
+    padding-left: 10px;
+}
+
 .affix {
     top: 60px;
     margin-top: 11px;

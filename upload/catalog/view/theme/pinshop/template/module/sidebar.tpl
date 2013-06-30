@@ -45,16 +45,5 @@
             $("#pinboard").masonry('reload').masonry();
         });
     });
-
-    $('#category li a').on("click", function(e){
-        e.preventDefault();
-
-        var manufacturer_id = $('#manufacturers :selected').val();
-
-        var href = $(this).attr('href') + '&filter_manufacturer_id=' + manufacturer_id;
-        $('#pinboard').load(href, function () {
-            $("#pinboard").masonry('reload').masonry();
-        });
-    });
 //--></script>
 

@@ -23,7 +23,8 @@
                         <?php if (!$product['special']) { ?>
                         <?php echo $product['price']; ?>
                         <?php } else { ?>
-                        <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+                        <span class="price-old"><?php echo $product['price']; ?></span>
+                        <span class="price-new"><?php echo $product['special']; ?></span>
                         <?php } ?>
                         <?php } ?>
                     </div>
