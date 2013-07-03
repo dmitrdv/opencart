@@ -17,6 +17,7 @@ class ControllerCommonHome extends Controller {
         ));
 
         $this->data['sidebar'] = $module = $this->getChild('module/sidebar');
+        $this->data['pinhead'] = $module = $this->getChild('module/pinhead');
 
 		$this->data['heading_title'] = $this->config->get('config_title');
 		

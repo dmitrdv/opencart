@@ -1,5 +1,5 @@
 <div id="sidebar">
-    <div class="well sidebar-nav" data-spy="affix" data-offset-top="600">
+    <div class="well sidebar-nav" data-spy="affix" data-offset-top="645">
         <ul class="nav nav-list">
             <li class="nav-header">
                 Geography
@@ -44,6 +44,9 @@
         $('#pinboard').load(href, function () {
             $("#pinboard").masonry('reload').masonry();
         });
+
+        $('#pinhead').load('index.php?route=module/pinhead');
+
     });
 //--></script>
 
